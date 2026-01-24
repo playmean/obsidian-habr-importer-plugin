@@ -1,6 +1,6 @@
 {
     "name": "obsidian-habr-importer-plugin",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Download Habr articles, convert to Markdown, and save into your vault",
     "main": "main.js",
     "scripts": {
