@@ -32,7 +32,7 @@ export default class HabrImporterPlugin extends Plugin {
         this.addSettingTab(new SettingsTab(this.app, this));
 
         this.addCommand({
-            id: 'habr-importer-download',
+            id: 'download-article',
             name: 'Import Habr article from URL',
             callback: () => {
                 new UrlPromptModal(this.app, (url) => {
@@ -42,7 +42,7 @@ export default class HabrImporterPlugin extends Plugin {
         });
 
         this.addCommand({
-            id: 'habr-importer-archive',
+            id: 'archive-article',
             name: 'Archive current Habr article',
             callback: () => {
                 const file = this.app.workspace.getActiveFile();
@@ -63,7 +63,7 @@ export default class HabrImporterPlugin extends Plugin {
         });
 
         this.addCommand({
-            id: 'habr-importer-update',
+            id: 'update-article',
             name: 'Update current Habr article',
             callback: () => {
                 const file = this.app.workspace.getActiveFile();
@@ -86,7 +86,9 @@ export default class HabrImporterPlugin extends Plugin {
     }
 
     async loadSettings() {
-        this.settings = Object.assign({}, defaultSettings, await this.loadData());
+        const loaded = (await this.loadData()) as Partial<PluginSettings> | null;
+
+        this.settings = Object.assign({}, defaultSettings, loaded ?? {});
     }
 
     async saveSettings() {
@@ -98,14 +100,14 @@ export default class HabrImporterPlugin extends Plugin {
 
         try {
             url = new URL(urlInput);
-        } catch (error) {
+        } catch {
             new Notice('Invalid URL.');
 
             return;
         }
 
         if (!url.hostname.endsWith('habr.com')) {
-            new Notice('Only habr.com links are supported.');
+            new Notice('Only Habr URLs are supported.');
 
             return;
         }
@@ -189,7 +191,8 @@ export default class HabrImporterPlugin extends Plugin {
 
     private async updateArticle(file: TFile) {
         const cache = this.app.metadataCache.getFileCache(file);
-        const source = cache?.frontmatter?.source;
+        const frontmatter = cache?.frontmatter as Record<string, unknown> | undefined;
+        const source = frontmatter?.source;
 
         if (typeof source !== 'string' || !source.trim()) {
             new Notice('No source URL in frontmatter.');
@@ -201,7 +204,7 @@ export default class HabrImporterPlugin extends Plugin {
 
         try {
             url = new URL(source);
-        } catch (error) {
+        } catch {
             new Notice('Invalid source URL in frontmatter.');
 
             return;

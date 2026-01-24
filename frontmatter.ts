@@ -4,7 +4,8 @@ import type { FrontmatterUpdate } from './types';
 
 export function isHabrArticle(app: App, file: TFile) {
     const cache = app.metadataCache.getFileCache(file);
-    const source = cache?.frontmatter?.source;
+    const frontmatter = cache?.frontmatter as Record<string, unknown> | undefined;
+    const source = frontmatter?.source;
 
     return (
         typeof source === 'string' &&
@@ -13,25 +14,28 @@ export function isHabrArticle(app: App, file: TFile) {
 }
 
 export async function updateFrontmatter(app: App, file: TFile, data: FrontmatterUpdate) {
-    await app.fileManager.processFrontMatter(file, (frontmatter) => {
-        if (data.source) {
-            frontmatter.source = data.source;
-        }
-
-        if (data.title) {
-            frontmatter.title = data.title;
-        }
-
-        if (data.published) {
-            const published = moment(data.published);
-
-            if (published.isValid()) {
-                frontmatter.published = published.toDate();
+    await app.fileManager.processFrontMatter(
+        file,
+        (frontmatter: Record<string, unknown>) => {
+            if (data.source) {
+                frontmatter.source = data.source;
             }
-        }
 
-        if (data.archived) {
-            frontmatter.archived = data.archived;
-        }
-    });
+            if (data.title) {
+                frontmatter.title = data.title;
+            }
+
+            if (data.published) {
+                const published = moment(data.published);
+
+                if (published.isValid()) {
+                    frontmatter.published = published.toDate();
+                }
+            }
+
+            if (data.archived) {
+                frontmatter.archived = data.archived;
+            }
+        },
+    );
 }

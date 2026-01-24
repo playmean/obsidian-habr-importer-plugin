@@ -14,7 +14,7 @@ export function resolveImageUrl(img: HTMLImageElement, baseUrl: URL) {
 
     try {
         return new URL(src, baseUrl.origin).toString();
-    } catch (error) {
+    } catch {
         return null;
     }
 }
@@ -38,7 +38,7 @@ export function getImageExtension(url: string) {
         if (!extension || extension.length > 5) return null;
 
         return extension.toLowerCase();
-    } catch (error) {
+    } catch {
         return null;
     }
 }
@@ -98,14 +98,7 @@ export async function hashArrayBuffer(data: ArrayBuffer) {
         return bufferToHex(digest);
     }
 
-    try {
-        const { createHash } = await import('crypto');
-        const buffer = Buffer.from(data);
-
-        return createHash('sha256').update(buffer).digest('hex');
-    } catch (error) {
-        return createUuid().replace(/[^a-f0-9]/gi, '');
-    }
+    return createUuid().replace(/[^a-f0-9]/gi, '');
 }
 
 export function bufferToHex(buffer: ArrayBuffer) {

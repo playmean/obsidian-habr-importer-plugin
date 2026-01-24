@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "node esbuild.config.mjs",
         "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-        "release": "npm run build && ./release.sh"
+        "release": "npm run build && ./release.sh",
+        "lint": "eslint"
     },
     "author": "playmean",
     "license": "MIT",
@@ -18,10 +19,11 @@
         "@trivago/prettier-plugin-sort-imports": "^4.0.0",
         "@types/node": "^16.11.6",
         "@types/turndown": "^5.0.6",
-        "@typescript-eslint/eslint-plugin": "^5.29.0",
-        "@typescript-eslint/parser": "^5.29.0",
-        "builtin-modules": "^3.3.0",
+        "@typescript-eslint/eslint-plugin": "^8.53.1",
+        "@typescript-eslint/parser": "^8.53.1",
         "esbuild": "^0.17.3",
+        "eslint": "^9.39.2",
+        "eslint-plugin-obsidianmd": "^0.1.9",
         "obsidian": "latest",
         "prettier": "^3.3.3",
         "semverity": "^0.4.0",
