@@ -2,7 +2,7 @@
     "id": "habr-importer",
     "name": "Habr Importer",
     "description": "Download Habr articles, convert to Markdown, and save into your vault.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": "playmean",
     "authorUrl": "https://github.com/playmean",
     "minAppVersion": "0.15.0",
