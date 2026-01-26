@@ -26,10 +26,7 @@ export async function archiveArticle(app: App, file: TFile) {
         return false;
     }
 
-    const targetPath = await getUniquePath(
-        app,
-        normalizePath(`${archivePath}/${file.name}`),
-    );
+    const targetPath = getUniquePath(app, normalizePath(`${archivePath}/${file.name}`));
 
     try {
         await app.vault.rename(file, targetPath);

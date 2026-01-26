@@ -19,7 +19,7 @@ export async function ensureFolder(app: App, path: string) {
     }
 }
 
-export async function getUniquePath(app: App, path: string) {
+export function getUniquePath(app: App, path: string) {
     if (!app.vault.getAbstractFileByPath(path)) {
         return path;
     }

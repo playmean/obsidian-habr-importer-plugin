@@ -137,7 +137,7 @@ export default class HabrImporterPlugin extends Plugin {
         }
 
         const baseName = sanitizeFileName(meta.title || 'Habr Article') || 'Habr Article';
-        const filePath = await getUniquePath(
+        const filePath = getUniquePath(
             this.app,
             normalizePath(folderPath ? `${folderPath}/${baseName}.md` : `${baseName}.md`),
         );
