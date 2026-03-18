@@ -28,8 +28,17 @@
 - `published`: дата и время публикации (если доступно)
 - `archived`: дата и время архивации (при архивировании)
 
-## Настройки
+## Ручная установка плагина (пока не опубликуется в community plugins)
+
+1. Перейдите в настройки Obsidian -> Community plugins и убедитесь, что у вас выключена опция Restricted mode, а кнопка Community plugins открывает список плагинов
+2. Скачайте плагин в разделе [Releases](https://github.com/playmean/obsidian-habr-importer-plugin/releases)
+3. Перейдите в каталог с плагинами Obsidian в вашем Vault (например, `/Users/user/obsidian/.obsidian/plugins`); если каталога `plugins` нет, создайте
+4. Создайте внутри каталога с плагинами новый каталог `habr-importer` и переместите туда файлы `main.js` и `manifest.json` из архива выше
+5. Перезапустите Obsidian и зайдите в настройки -> Community plugins, в разделе Installed plugins должен появиться `Habr Importer`
+
+## Настройки (кнопка ⚙️ в Community plugins -> Habr Importer)
 
 - **Target folder**: путь в vault, куда сохраняются статьи (например `Habr`).
 - **Images folder**: путь в vault, куда сохраняются изображения (например `Habr Images`).
 - **Open after import**: автоматически открывать статью после импорта.
+
