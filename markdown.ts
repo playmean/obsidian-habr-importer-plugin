@@ -20,6 +20,16 @@ export function prepareMarkdown(articleEl: Element, meta: ArticleMeta) {
 
     turndown.use(tables);
 
+    turndown.addRule('listParagraph', {
+        filter: (node: HTMLElement) =>
+            node.nodeName === 'P' && node.parentNode?.nodeName === 'LI',
+        replacement: (content: string, node: HTMLElement) => {
+            const trimmed = content.replace(/\n{2,}/g, '\n').trim();
+
+            return node.nextSibling ? `${trimmed}\n` : trimmed;
+        },
+    });
+
     turndown.addRule('tableCell', {
         filter: ['th', 'td'],
         replacement: (content: string, node: HTMLElement) => {
