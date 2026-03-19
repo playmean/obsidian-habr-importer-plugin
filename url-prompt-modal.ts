@@ -13,7 +13,7 @@ export class UrlPromptModal extends Modal {
         const { contentEl } = this;
         contentEl.empty();
 
-        contentEl.createEl('h2', { text: 'Import Habr article' });
+        contentEl.createEl('h2', { text: 'Import article' });
 
         let urlValue = '';
 

@@ -16,7 +16,7 @@ export class SettingsTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('Target folder')
-            .setDesc('Vault folder where markdown files will be saved.')
+            .setDesc('Vault folder where Markdown files will be saved.')
             .addText((text) =>
                 text
                     .setPlaceholder('Habr')

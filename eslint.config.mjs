@@ -12,15 +12,6 @@ export default defineConfig([
         plugins: {
             obsidianmd,
         },
-        rules: {
-            'obsidianmd/ui/sentence-case': [
-                'error',
-                {
-                    brands: ['Habr'],
-                    acronyms: ['URL'],
-                },
-            ],
-        },
     },
     {
         languageOptions: {

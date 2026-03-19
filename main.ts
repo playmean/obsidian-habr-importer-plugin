@@ -33,7 +33,7 @@ export default class HabrImporterPlugin extends Plugin {
 
         this.addCommand({
             id: 'download-article',
-            name: 'Import Habr article from URL',
+            name: 'Import article from link',
             callback: () => {
                 new UrlPromptModal(this.app, (url) => {
                     void this.importArticle(url);
@@ -43,7 +43,7 @@ export default class HabrImporterPlugin extends Plugin {
 
         this.addCommand({
             id: 'archive-article',
-            name: 'Archive current Habr article',
+            name: 'Archive current article',
             callback: () => {
                 const file = this.app.workspace.getActiveFile();
                 if (!(file instanceof TFile)) {
@@ -53,7 +53,7 @@ export default class HabrImporterPlugin extends Plugin {
                 }
 
                 if (!isHabrArticle(this.app, file)) {
-                    new Notice('Active file is not a Habr article.');
+                    new Notice('Active file is not a habr article.');
 
                     return;
                 }
@@ -64,7 +64,7 @@ export default class HabrImporterPlugin extends Plugin {
 
         this.addCommand({
             id: 'update-article',
-            name: 'Update current Habr article',
+            name: 'Update current habr article',
             callback: () => {
                 const file = this.app.workspace.getActiveFile();
 
@@ -75,7 +75,7 @@ export default class HabrImporterPlugin extends Plugin {
                 }
 
                 if (!isHabrArticle(this.app, file)) {
-                    new Notice('Active file is not a Habr article.');
+                    new Notice('Active file is not a habr article.');
 
                     return;
                 }
@@ -107,7 +107,7 @@ export default class HabrImporterPlugin extends Plugin {
         }
 
         if (!url.hostname.endsWith('habr.com')) {
-            new Notice('Only Habr URLs are supported.');
+            new Notice('Only habr article links are supported.');
 
             return;
         }
@@ -147,7 +147,7 @@ export default class HabrImporterPlugin extends Plugin {
         } catch (error) {
             console.error('Failed to save markdown file', error);
 
-            new Notice('Failed to save markdown file.');
+            new Notice('Failed to save Markdown file.');
 
             return;
         }
@@ -225,7 +225,7 @@ export default class HabrImporterPlugin extends Plugin {
         } catch (error) {
             console.error('Failed to update markdown file', error);
 
-            new Notice('Failed to update markdown file.');
+            new Notice('Failed to update Markdown file.');
 
             return;
         }

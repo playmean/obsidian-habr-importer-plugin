@@ -83,8 +83,8 @@ function normalizeTableCellContent(content: string) {
 
 function formatTableCell(content: string, node: HTMLElement) {
     const parent = node.parentNode;
-    const siblings = parent?.childNodes ?? [];
-    const index = Array.prototype.indexOf.call(siblings, node);
+    const siblings = Array.from(parent?.childNodes ?? []);
+    const index = siblings.indexOf(node);
     const prefix = index === 0 ? '| ' : ' ';
 
     return `${prefix}${content} |`;
