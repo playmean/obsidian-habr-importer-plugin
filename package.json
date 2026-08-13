@@ -24,7 +24,7 @@
         "esbuild": "^0.17.3",
         "eslint": "^9.39.2",
         "eslint-plugin-obsidianmd": "^0.1.9",
-        "obsidian": "latest",
+        "obsidian": "^1.13.1",
         "prettier": "^3.3.3",
         "semverity": "^0.4.1",
         "tslib": "^2.4.0",
