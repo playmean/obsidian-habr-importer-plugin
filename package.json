@@ -1,12 +1,12 @@
 {
     "name": "obsidian-habr-importer-plugin",
-    "version": "0.2.3",
+    "version": "0.3.0",
     "description": "Download Habr articles, convert to Markdown, and save into your vault",
     "main": "main.js",
     "scripts": {
         "dev": "node esbuild.config.mjs",
         "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-        "release": "npm run build && ./release.sh",
+        "release": "npm run build && ./bump.sh && ./release.sh",
         "lint": "eslint"
     },
     "author": "playmean",
